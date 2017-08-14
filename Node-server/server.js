@@ -61,7 +61,7 @@ app.post('/uploader', fileUpload, function (req, res) {
  	 } if (data) {
     	console.log("Upload Success", data.Location);
     	
-    	axios.post('https://uwnoteshare.herokuapp.com/uploader', {
+    	axios.post('https://uwsharenotes.herokuapp.com/uploader', {
     		 'name': '0',
    			 'university': '1',
    			 'course': '2',

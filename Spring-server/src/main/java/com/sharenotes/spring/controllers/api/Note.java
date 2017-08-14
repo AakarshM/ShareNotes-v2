@@ -30,6 +30,9 @@ public class Note {
     @Column(name="semester")
     private String semester;
 
+    @Column(name="url")
+    private String url;
+
     public Note(){
 
     }
@@ -97,5 +100,13 @@ public class Note {
 
     public void setSemester(String semester) {
         this.semester = semester;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
