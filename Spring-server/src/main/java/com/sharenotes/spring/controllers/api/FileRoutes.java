@@ -50,15 +50,16 @@ public class FileRoutes {
     }
 
     @RequestMapping(value = "/api/uploader", method = RequestMethod.POST)
-    public boolean saveNotes(@RequestBody String body){
+    public String saveNotes(@RequestBody String body){
         ObjectMapper mapper = new ObjectMapper();
         Note note;
         try{
             note = mapper.readValue(body, Note.class);
-            return fHandler.saveFile(note);
+            fHandler.saveFile(note);
+            return note.toString();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            return "Main problem";
         }
 
     }

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Note {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
@@ -37,13 +37,14 @@ public class Note {
 
     }
 
-    public Note(String name, String course, String university, String date, String professor, String semester) {
+    public Note(String name, String course, String university, String date, String professor, String semester, String url) {
         this.name = name;
         this.course = course;
         this.university = university;
         this.date = date;
         this.professor = professor;
         this.semester = semester;
+        this.url = url;
     }
 
     public int getId() {
@@ -108,5 +109,19 @@ public class Note {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", course='" + course + '\'' +
+                ", university='" + university + '\'' +
+                ", date='" + date + '\'' +
+                ", professor='" + professor + '\'' +
+                ", semester='" + semester + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }
