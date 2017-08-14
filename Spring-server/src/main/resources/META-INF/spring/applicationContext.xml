@@ -6,19 +6,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.sharenotes.spring"/>
-    <context:property-placeholder location="classpath:aws.properties"/>
+    <context:property-placeholder location="classpath:META-INF/spring/aws.properties"/>
 
-    <!-- Define global credentials for all the AWS clients -->
+    <!-- Define global credentials for all the AWS clients
     <aws-context:context-credentials>
         <aws-context:instance-profile-credentials/>
         <aws-context:simple-credentials access-key="${aws.accessKey}"
                                         secret-key="${aws.secretKey}"/>
     </aws-context:context-credentials>
+-->
+    <!-- Define global region
+    <aws-context:context-region region="${aws.region}"/> -->
 
-    <!-- Define global region -->
-    <aws-context:context-region region="${aws.region}"/>
-
-    <!-- Cloud Formation Stack -->
-    <aws-context:stack-configuration stack-name="StackName"/>
+    <!-- Cloud Formation Stack
+    <aws-context:stack-configuration stack-name="StackName"/> -->
 
 </beans>

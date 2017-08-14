@@ -1,5 +1,6 @@
 package com.sharenotes.spring;
 
+import com.sharenotes.spring.controllers.api.services.DBConnector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

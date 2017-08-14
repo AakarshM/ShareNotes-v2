@@ -8,9 +8,8 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <!-- postgres?
         <property name="connection.url">jdbc:postgresql://127.0.0.1:5432/test1</property>
-        -->
+
         <property name="connection.username">tester</property>
         <property name="connection.password">test</property>
 
@@ -18,14 +17,17 @@
         <property name="connection.pool_size">1</property>
 
         <!-- Select our SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.PostgresPlusDialect</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
 
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
 
 		<!-- Set the current session context -->
 		<property name="current_session_context_class">thread</property>
- 
+
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+
     </session-factory>
 
 </hibernate-configuration>
