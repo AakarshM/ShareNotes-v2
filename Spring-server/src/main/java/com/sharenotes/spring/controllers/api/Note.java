@@ -124,4 +124,9 @@ public class Note {
                 ", url='" + url + '\'' +
                 '}';
     }
+
+    public void makePretty(){
+        course = course.toUpperCase().trim();
+        
+    }
 }
