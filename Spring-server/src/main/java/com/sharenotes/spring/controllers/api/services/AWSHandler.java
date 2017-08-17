@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 /**
@@ -22,48 +24,11 @@ import java.util.Properties;
 public class AWSHandler {
     AmazonS3 s3Client;
 
-    /*
-    public AWSHandler(){
-        Properties prop = new Properties();
-        InputStream input = null;
-
-        try {
-
-            System.out.println("GETTING-INPUT");
-
-            input = new FileInputStream("aws.properties");
-           // input = new FileInputStream("META-INF/spring/aws.properties");
-
-            System.out.println("LOADED-INPUT");
-
-            // load a properties file
-            prop.load(input);
-
-            System.out.println("LOADED-PROP");
-
-            System.out.println("ACCESSKEY:" + prop.getProperty("aws.accessKey"));
-
-            // get the property value and print it out
-            BasicAWSCredentials awsCreds = new BasicAWSCredentials(prop.getProperty("aws.accessKey"),
-                    prop.getProperty("aws.secretKey"));
-
-            System.out.println("ACCESSKEY2:" + prop.getProperty("aws.accessKey"));
-            s3Client = AmazonS3ClientBuilder.standard()
-                    .withRegion(Regions.US_EAST_1)
-                    .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
-                    .build();
-
-            System.out.println("SUCCESS CONNECTING AWS S3");
-
-        } catch (IOException ex) {
-            System.out.println("AWSHANDLER-ERROR");
-            ex.printStackTrace();
-        }
-    } */
-
-    private AWSHandler(){
-        String accessKey="AKIAIGGWMCTPGKSIN5PQ";
-        String secretKey="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";
+    private AWSHandler() throws URISyntaxException {
+        URI AWSAccessKeyURI = new URI(System.getenv("AWS_ACCESS"));
+        URI AWSSecretKeyURI = new URI(System.getenv("AWS_SECRET"));
+        String accessKey= AWSAccessKeyURI.toString();
+        String secretKey= AWSSecretKeyURI.toString();
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKey,
                 secretKey);
 
