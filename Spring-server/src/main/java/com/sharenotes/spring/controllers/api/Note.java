@@ -127,6 +127,6 @@ public class Note {
 
     public void makePretty(){
         course = course.toUpperCase().trim();
-        
+
     }
 }

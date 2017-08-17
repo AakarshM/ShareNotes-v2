@@ -3,6 +3,7 @@ package com.sharenotes.spring.controllers.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sharenotes.spring.controllers.api.services.AWSHandler;
 import com.sharenotes.spring.controllers.api.services.DBConnector;
+import com.sharenotes.spring.controllers.api.services.ObjectWrapper;
 import com.sun.org.apache.regexp.internal.RE;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,11 +20,13 @@ import java.util.List;
 @RestController
 public class FileRoutes {
     private FileHandler fHandler;
+    private ObjectWrapper wrapper;
 
     //Injecting S3Handler, dbConnector dependencies.
     @Autowired
-    private FileRoutes(FileHandler fHandler){
+    private FileRoutes(FileHandler fHandler, ObjectWrapper wrapper){
         this.fHandler = fHandler;
+        this.wrapper = wrapper;
     }
     private FileRoutes(){}
 
@@ -33,14 +36,9 @@ public class FileRoutes {
     }
 
     @RequestMapping(value = "/api/getfile", method = RequestMethod.POST) //specific note
-    public FileInfo returnFile(@RequestBody String body){
-        ObjectMapper mapper = new ObjectMapper();
+    public FileInfo returnFile(@RequestBody String body) throws IOException{
         FileQuery fQuery = null;
-        try {
-            fQuery = mapper.readValue(body, FileQuery.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        fQuery = wrapper.getWrapper().readValue(body, FileQuery.class);
         return fHandler.getFile(fQuery.getID());
     }
 
@@ -50,18 +48,10 @@ public class FileRoutes {
     }
 
     @RequestMapping(value = "/api/uploader", method = RequestMethod.POST)
-    public String saveNotes(@RequestBody String body){
-        ObjectMapper mapper = new ObjectMapper();
-        Note note;
-        try{
-            note = mapper.readValue(body, Note.class);
-            fHandler.saveFile(note);
-            return note.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "Main problem";
-        }
-
+    public String saveNotes(@RequestBody String body) throws IOException{
+        Note note = null;
+        note = wrapper.getWrapper().readValue(body, Note.class);
+        fHandler.saveFile(note);
+        return note.toString();
     }
-
 }
