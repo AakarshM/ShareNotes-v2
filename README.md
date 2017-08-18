@@ -12,3 +12,8 @@ Below are some tests using Siege load tester displaying results with the max (25
 
 # Async API
 ![async](Load/async.png)
+
+In a more intense load test (~12 minutes long with 255 concurrent users and internet mode) response times different by a factor of over 60%.
+
+
+Its apparently the async API had a better scaling performance (longest transaction in async API is shorter than the shortest transaction in the sync API)
