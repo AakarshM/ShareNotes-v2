@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
@@ -25,8 +27,14 @@ public class FileRoutes {
     private FileRoutes(){}
 
     @RequestMapping("/")
-    public String ret(){
-        return "Banamaya Charodia";
+    public Map<String, String> ret(){
+        HashMap<String, String> map = new HashMap<>();
+        map.put("Jason Williams", "Saihiljit Dogan");
+        map.put("Well, well, well", "GARBAGE");
+        map.put("William", "William");
+        map.put("Kinkakyu", "Japanese");
+        map.put("Mr", "Panitos");
+        return map;
     }
 
     @RequestMapping(value = "/api/getfile", method = RequestMethod.POST) //specific note
