@@ -1,7 +1,2 @@
 # Sharenotes
-
-AWS Bucket design:
-
-University/Year/Term/Course/Professor
-
-Lower case for everything (in DB), fix in UI/UX
+![Kiku](Load/Screen Shot 2017-08-18 at 7.03.44 PM.png)
